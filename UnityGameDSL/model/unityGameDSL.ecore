@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="unityGameDSL" nsURI="http://www.example.org/unityGameDSL" nsPrefix="unityGameDSL">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Movement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aceleration" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxSpeed" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Sideways" eSuperTypes="#//Movement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isJump" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="True"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jumpIntensity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TopDown" eSuperTypes="#//Movement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectCreation" eSuperTypes="#//GameAction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" lowerBound="2"
+        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SelfDestruction" eSuperTypes="#//GameAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Colision" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="form" eType="#//ColisionTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GUIElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="showData" lowerBound="1"
+        eType="#//Data" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextDisplay" eSuperTypes="#//GUIElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="standardText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BarDisplay" eSuperTypes="#//GUIElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NoText"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NoText" value="self.showData.type &lt;> DataTypes::Text"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxValue" eType="#//DataTypes"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplyForce" eSuperTypes="#//GameAction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInstant" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="True"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intensity" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" lowerBound="2"
+        upperBound="2" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Trigger" eSuperTypes="#//Colision">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="execute" lowerBound="1"
+        upperBound="-1" eType="#//GameAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="collisionTAg" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RigidBody" eSuperTypes="#//Colision"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ColisionTypes">
+    <eLiterals name="Square"/>
+    <eLiterals name="Circle" value="1"/>
+    <eLiterals name="Poligonal" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Data">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//DataTypes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DataTypes">
+    <eLiterals name="Integer"/>
+    <eLiterals name="Decimal" value="1"/>
+    <eLiterals name="Text" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GameAction" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataChange" abstract="true" eSuperTypes="#//GameAction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modified" lowerBound="1"
+        eType="#//Data" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Add" eSuperTypes="#//DataChange">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NoText"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NoText" value="self.modified.type &lt;> DataTypes::Text "/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subtract" eSuperTypes="#//DataChange">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NoText"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NoText" value="self.modified.type &lt;> DataTypes::Text "/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Define" eSuperTypes="#//DataChange"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Actionkey">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="execute" lowerBound="1"
+        upperBound="-1" eType="#//GameAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pressType" eType="#//KeyType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="KeyType">
+    <eLiterals name="Instant"/>
+    <eLiterals name="Repeated" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GameObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="NeedPhysics"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="NeedPhysics" value="&#xA;&#x9;&#x9;&#x9;self.start->select(p | p.oclIsKindOf(ApplyForce))->size() > 0 implies self.colision->select(p | p.oclIsKindOf(RigidBody))->size() > 0&#xA;&#x9;&#x9;&#x9;and  self.update->select(p | p.oclIsKindOf(ApplyForce))->size() > 0 implies self.colision->select(p | p.oclIsKindOf(RigidBody))->size() > 0&#xA;&#x9;&#x9;&#x9;and  self.interaction.execute->select(p | p.oclIsKindOf(ApplyForce))->size() > 0 implies self.colision->select(p | p.oclIsKindOf(RigidBody))->size() > 0&#xA;&#x9;&#x9;&#x9;and  self.movement->size() > 0 implies self.colision->select(p | p.oclIsKindOf(RigidBody))->size() > 0"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="movement" eType="#//Movement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="colision" upperBound="-1"
+        eType="#//Colision" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="interaction" upperBound="-1"
+        eType="#//Actionkey" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="start" upperBound="-1"
+        eType="#//GameAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="update" upperBound="-1"
+        eType="#//GameAction" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataManager">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controls" eType="#//Data"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
