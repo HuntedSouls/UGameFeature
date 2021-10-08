@@ -133,12 +133,4 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Game">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="gameobject" eType="#//GameObject"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="datamanager" eType="#//DataManager"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="guielement" eType="#//GUIElement"
-        containment="true"/>
-  </eClassifiers>
 </ecore:EPackage>

@@ -1,0 +1,36 @@
+module ugametransform;
+
+create OUT : unityGameDSL from IN: CsProgram
+
+
+
+rule Gobject2Class{
+	from g : Game!unityGameDSL(g.gameobject->select()->size()>0)
+	
+	to c : Class!CsProgram(
+		member<-g.gameobject.movement,
+		member<-g.gameobject.start,
+		member<-g.gameobject.update,
+		member<-g.gameobject.interaction,
+		member<-g.gameobject.collision,
+		methods<-g.gameobject.movement,
+		methods<-g.gameobject.start,
+		methods<-g.gameobject.update,
+		methods<-g.gameobject.interaction,
+		methods<-g.gameobject.collision,
+		)
+}
+
+helper context Class!CsProgram def: addStartStatement(statement : String) : Class!CsProgram =
+	self.methods.select(m | m.identifier = 'Start').body->union(statement); 
+
+rule Gobject2member{
+	from g : Game!unityGameDSL(g.gameobject->select()->size()>0)
+	to m : MemberDef!CsProgram(
+		m<-g.gameobject.movement,
+		m<-g.gameobject.start,
+		m<-g.gameobject.update,
+		m<-g.gameobject.interaction,
+		m<-g.gameobject.collision
+	)
+}

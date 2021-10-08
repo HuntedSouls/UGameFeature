@@ -88,5 +88,10 @@
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference unityGameDSL.ecore#//DataManager/controls"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute unityGameDSL.ecore#//DataManager/name"/>
     </genClasses>
+    <genClasses ecoreClass="unityGameDSL.ecore#//Game">
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference unityGameDSL.ecore#//Game/gameobject"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference unityGameDSL.ecore#//Game/datamanager"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference unityGameDSL.ecore#//Game/guielement"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

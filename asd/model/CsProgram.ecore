@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="example" nsURI="http://www.example.org/examples/example.ecore"
+    nsPrefix="ex">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="File" eSuperTypes="#//Namespace">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="HasFileName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="HasFileName" value="not (filename.oclIsUndefined() or filename.size() = 0)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filename" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveType">
+    <eLiterals name="byte"/>
+    <eLiterals name="sbyte" value="1"/>
+    <eLiterals name="short" value="2"/>
+    <eLiterals name="ushort" value="3"/>
+    <eLiterals name="int" value="4"/>
+    <eLiterals name="uint" value="5"/>
+    <eLiterals name="long" value="6"/>
+    <eLiterals name="ulong" value="7"/>
+    <eLiterals name="float" value="8"/>
+    <eLiterals name="double" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Namespace">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidUsingDirectives UniqueTypeDefs"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ValidUsingDirectives" value="using->forAll(directive | directive.size() > 0)"/>
+      <details key="UniqueTypeDefs" value="typedefs->forAll(typeDef | typedefs->select(compare | typeDef.alias = compare.alias)->size() = 1)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="namespace" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typedefs" upperBound="-1"
+        eType="#//TypeDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="using" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Delegate" eSuperTypes="#//TypeDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="DelegateValidReturnType DelegateNoSpecifier UniqueParameters"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="DelegateValidReturnType" value="not (returns.oclIsUndefined() or returns.size() = 0)"/>
+      <details key="DelegateNoSpecifier" value="specifier = Specifier::none"/>
+      <details key="UniqueParameters" value="parameters->forAll(param | parameters->select(compare | param.alias = compare.alias)->size() = 1)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returns" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//TypeDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ClassValidSpecifier SingleStaticConstructor UniqueTypeDefs UniqueInterfaces UniqueMembers"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ClassValidSpecifier" value="specifier = Specifier::none or specifier = Specifier::static or specifier = Specifier::abstract or specifier = Specifier::sealed"/>
+      <details key="SingleStaticConstructor" value="constructors->select(c | c.specifier = Specifier::static)->size() &lt;= 1"/>
+      <details key="UniqueTypeDefs" value="typedefs->forAll(typeDef | typedefs->select(compare | typeDef.alias = compare.alias)->size() = 1)"/>
+      <details key="UniqueInterfaces" value="implements->forAll(interface | implements->select(compare | interface.alias = compare.alias)->size() = 1)"/>
+      <details key="UniqueMembers" value="members->forAll(member | members->select(compare | member.alias = compare.alias)->size() = 1)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="implements" upperBound="-1"
+        eType="#//Interface" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//MethodDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
+        eType="#//ConstructorDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extends" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typedefs" upperBound="-1"
+        eType="#//TypeDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//MemberDef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AccessModifier">
+    <eLiterals name="public"/>
+    <eLiterals name="private" value="1"/>
+    <eLiterals name="protected" value="2"/>
+    <eLiterals name="internal" value="3"/>
+    <eLiterals name="protected_internal" value="4"/>
+    <eLiterals name="private_protected" value="5"/>
+    <eLiterals name="none" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Struct" eSuperTypes="#//TypeDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="StructValidSpecifier SingleStaticConstructor UniqueTypeDefs UniqueMembers"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="StructValidSpecifier" value="specifier = Specifier::none or specifier = Specifier::readonly"/>
+      <details key="SingleStaticConstructor" value="constructors->select(c | c.specifier = Specifier::static)->size() &lt;= 1"/>
+      <details key="UniqueTypeDefs" value="typedefs->forAll(typeDef | typedefs->select(compare | typeDef.alias = compare.alias)->size() = 1)"/>
+      <details key="UniqueMembers" value="members->forAll(member | members->select(compare | member.alias = compare.alias)->size() = 1)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//MethodDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constructors" upperBound="-1"
+        eType="#//ConstructorDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typedefs" upperBound="-1"
+        eType="#//TypeDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//MemberDef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enum" eSuperTypes="#//TypeDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="EnumExtendsNonFloat EnumUniqueLiterals"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="EnumExtendsNonFloat" value="not (base = PrimitiveType::float) and (not (base = PrimitiveType::double))"/>
+      <details key="EnumUniqueLiterals" value="literals->forAll(literal | literals->isUnique(literal))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="base" eType="#//PrimitiveType"
+        defaultValueLiteral="int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literals" upperBound="-1"
+        eType="#//Literal" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Interface" eSuperTypes="#//TypeDef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//MethodDef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDef" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="HasAlias"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="HasAlias" value="not (alias.oclIsUndefined() or alias.size() = 0)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessability" eType="#//AccessModifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specifier" eType="#//Specifier"
+        defaultValueLiteral="none"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MemberDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MemberDefValidSpecifier ValidAlias ValidType"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="MemberDefValidSpecifier" value="specifier = Specifier::none or specifier = Specifier::readonly or specifier = Specifier::const or specifier = Specifier::static"/>
+      <details key="ValidAlias" value="not (alias.oclIsUndefined() or alias.size() = 0)"/>
+      <details key="ValidType" value="not (type.oclIsUndefined() or type.size() = 0)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessability" eType="#//AccessModifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specifier" eType="#//Specifier"
+        defaultValueLiteral="none"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Specifier">
+    <eLiterals name="static"/>
+    <eLiterals name="const" value="1"/>
+    <eLiterals name="readonly" value="2"/>
+    <eLiterals name="none" value="3"/>
+    <eLiterals name="sealed" value="4"/>
+    <eLiterals name="abstract" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MethodDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MethodDefValidSpecifier MethodDefValidReturnType MethodDefValidIdentifier UniqueParameters"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="MethodDefValidSpecifier" value="specifier = Specifier::none or specifier = Specifier::static"/>
+      <details key="MethodDefValidReturnType" value="not (returns.oclIsUndefined() or returns.size() = 0)"/>
+      <details key="MethodDefValidIdentifier" value="not (identifier.oclIsUndefined() or identifier.size() = 0)"/>
+      <details key="UniqueParameters" value="parameters->forAll(param | parameters->select(compare | param.alias = compare.alias)->size() = 1)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessability" eType="#//AccessModifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specifier" eType="#//Specifier"
+        defaultValueLiteral="none"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returns" eType="#//Type"
+        defaultValueLiteral="void"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstructorDef">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ConstructorValidSpecifier"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ConstructorValidSpecifier" value="specifier = Specifier::none or specifier = Specifier::static"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessability" eType="#//AccessModifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specifier" eType="#//Specifier"
+        defaultValueLiteral="none"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Type" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ParameterValidType ParameterValidAlias"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="ParameterValidType" value="not (type.oclIsUndefined() or type.size() = 0)"/>
+      <details key="ParameterValidAlias" value="not (alias.oclIsUndefined() or alias.size() = 0)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specifier" eType="#//VarSpecifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VarSpecifier">
+    <eLiterals name="none"/>
+    <eLiterals name="ref" value="1"/>
+    <eLiterals name="out" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="LiteralValidIdentifier"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="LiteralValidIdentifier" value="not (identifier.oclIsUndefined() or identifier.size() = 0)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="useValue" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>

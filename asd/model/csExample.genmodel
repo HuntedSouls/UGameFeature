@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/project/src" modelPluginID="project" modelName="CsExample"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>CsProgram.ecore</foreignModel>
+  <genPackages prefix="Example" disposableProviderFactory="true" ecorePackage="CsProgram.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CsProgram.ecore#//PrimitiveType">
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/sbyte"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/short"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/ushort"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/int"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/uint"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/long"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/ulong"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/float"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//PrimitiveType/double"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CsProgram.ecore#//AccessModifier">
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/public"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/private"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/internal"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/protected_internal"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/private_protected"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//AccessModifier/none"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CsProgram.ecore#//EType">
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//EType/class"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//EType/struct"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//EType/delegate"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//EType/enum"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//EType/interface"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CsProgram.ecore#//Specifier">
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/static"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/const"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/readonly"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/none"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/sealed"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//Specifier/abstract"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CsProgram.ecore#//VarSpecifier">
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//VarSpecifier/none"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//VarSpecifier/ref"/>
+      <genEnumLiterals ecoreEnumLiteral="CsProgram.ecore#//VarSpecifier/out"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="CsProgram.ecore#//Type"/>
+    <genClasses ecoreClass="CsProgram.ecore#//CsProgram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//CsProgram/reference"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//CsProgram/file"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//File"/>
+    <genClasses ecoreClass="CsProgram.ecore#//Reference">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Reference/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Namespace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Namespace/using"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Namespace/namespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Namespace/typedefs"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Delegate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Delegate/returns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Delegate/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Class/implements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Class/methods"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Class/extends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Class/typedefs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Class/members"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Struct">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Struct/methods"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Struct/typedefs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Struct/members"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Enum">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Enum/extends"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Enum/literals"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Interface">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CsProgram.ecore#//Interface/methods"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//TypeDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//TypeDef/accessability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//TypeDef/specifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//TypeDef/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//TypeDef/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//MemberDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MemberDef/accessability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MemberDef/specifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MemberDef/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MemberDef/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//MethodDef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MethodDef/accessability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MethodDef/specifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MethodDef/returns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//MethodDef/identifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CsProgram.ecore#//MethodDef/parameters"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Parameter/specifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Parameter/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Parameter/alias"/>
+    </genClasses>
+    <genClasses ecoreClass="CsProgram.ecore#//Literal">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Literal/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CsProgram.ecore#//Literal/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
