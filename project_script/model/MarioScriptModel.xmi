@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ex:File xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ex="http://www.example.org/examples/example.ecore"
+    xsi:schemaLocation="http://www.example.org/examples/example.ecore CsProgram.ecore"
+    namespace="UGameFeatureGen"
+    filename="GeneratedMarioScript">
+  <typedefs
+      xsi:type="ex:Class"
+      alias="Game"
+      extends="Monobehaviour">
+    <typedefs
+        xsi:type="ex:Class"
+        alias="DataManager"
+        extends="Monobehaviour">
+      <methods
+          identifier="AddCoins">
+        <parameters
+            type="int"
+            alias="coins"/>
+        <body>this.coins += coins;</body>
+      </methods>
+      <methods
+          identifier="SubtractCoins">
+        <parameters
+            type="int"
+            alias="coins"/>
+        <body>this.coins -= coins;</body>
+      </methods>
+      <methods
+          identifier="SetCoins">
+        <parameters
+            type="int"
+            alias="coins"/>
+        <body>this.coins = coins;</body>
+      </methods>
+      <methods
+          identifier="AddLives">
+        <parameters
+            type="int"
+            alias="lives"/>
+        <body>this.lives += lives;</body>
+      </methods>
+      <methods
+          identifier="SubtractLives">
+        <parameters
+            type="int"
+            alias="lives"/>
+        <body>this.lives -= lives;</body>
+      </methods>
+      <methods
+          identifier="SetLives">
+        <parameters
+            type="int"
+            alias="lives"/>
+        <body>this.lives = lives;</body>
+      </methods>
+      <members
+          type="int"
+          alias="coins"/>
+      <members
+          type="int"
+          alias="lives"/>
+    </typedefs>
+    <typedefs
+        xsi:type="ex:Class"
+        alias="PlayerCharacter"
+        extends="Monobehaviour">
+      <methods
+          identifier="Update">
+        <body>bool left = Input.GetKey(&quot;left&quot;)</body>
+        <body>bool up = Input.GetKey(&quot;up&quot;)</body>
+        <body>bool right = Input.GetKey(&quot;right&quot;)</body>
+        <body>bool down = Input.GetKey(&quot;down&quot;)</body>
+        <body>bool spacebar = Input.GetKey(&quot;spacebar&quot;)</body>
+        <body>if (shoot) {Shoot();}</body>
+        <body>if (left){Left();}</body>
+        <body>if (right){Right();}</body>
+        <body>if (up){Up();}</body>
+        <body>if (down){Down();}</body>
+      </methods>
+      <methods
+          identifier="Up">
+        <body>//rigidbody.AddForce(new Vector2())...</body>
+      </methods>
+      <methods
+          identifier="Down"/>
+      <methods
+          identifier="Left"/>
+      <methods
+          identifier="Right"/>
+      <methods
+          identifier="OnTriggerEnter2D">
+        <parameters
+            type="Collider2D"
+            alias="collider"/>
+        <body>// do something on trigger enter</body>
+      </methods>
+      <methods
+          identifier="OnCollisionCoin">
+        <body>// do something when collided with coin</body>
+      </methods>
+      <members
+          type="RigidBody"
+          alias="rigidbody"/>
+      <members
+          type="int"
+          alias="acceleration"/>
+      <members
+          type="int"
+          alias="maxSpeed"/>
+      <members
+          type="int"
+          alias="jumpIntensity"/>
+      <members
+          type="bool"
+          alias="isJump"/>
+    </typedefs>
+    <typedefs
+        xsi:type="ex:Class"
+        alias="Coin"
+        extends="Monobehaviour">
+      <methods
+          identifier="OnTriggerEnter2D">
+        <parameters
+            type="Collider2D"
+            alias="collider"/>
+        <body>// self destruct</body>
+      </methods>
+      <members
+          type="Collider2D"
+          alias="collider"/>
+    </typedefs>
+    <typedefs
+        xsi:type="ex:Class"
+        alias="Projectile"
+        extends="Monobehaviour">
+      <methods
+          identifier="Update">
+        <body>// add force every frame</body>
+      </methods>
+      <methods
+          identifier="OnTriggerEnter2D">
+        <parameters
+            type="Collider2D"
+            alias="collider"/>
+        <body>// check if collided with wall to self destruct</body>
+      </methods>
+      <members
+          type="RigidBody2D"
+          alias="rigidbody"/>
+      <members
+          type="int"
+          alias="acceleration"/>
+      <members
+          type="int"
+          alias="maxSpeed"/>
+      <members
+          type="bool"
+          alias="isJump"/>
+      <members
+          type="int"
+          alias="jumpIntensity"/>
+    </typedefs>
+    <typedefs
+        xsi:type="ex:Class"
+        alias="GUIController"
+        extends="Monobehaviour">
+      <methods
+          identifier="OnGUI">
+        <body>// draw gui elements from data</body>
+      </methods>
+      <members
+          type="DataManager"
+          alias="dataManager"/>
+    </typedefs>
+    <typedefs
+        xsi:type="ex:Class"
+        alias="Enemy"
+        extends="Monobehaviour">
+      <methods
+          identifier="OnTriggerEnter2D">
+        <parameters
+            type="Collider2D"
+            alias="collider"/>
+        <body>// self destruct</body>
+      </methods>
+      <members
+          type="Collider2D"
+          alias="head"/>
+      <members
+          type="Collider2D"
+          alias="body"/>
+    </typedefs>
+    <members
+        type="DataManager"
+        alias="dataManager"/>
+  </typedefs>
+  <using>System</using>
+  <using>UnityEngine</using>
+</ex:File>
